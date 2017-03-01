@@ -1,0 +1,30 @@
+
+
+
+.youtube-player {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+
+.search-bar {
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: #000;
+  border-bottom: solid 1px #fff;
+
+}
+
+
+
+input{
+  line-height: 30px;
+  font-size: 16px;
+  border: solid 1px #fff;
+  background: #000;
+  color: #fff;
+}
