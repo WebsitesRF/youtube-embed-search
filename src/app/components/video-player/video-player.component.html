@@ -1,6 +1,7 @@
-<p>
-  <span (click)="close()">video-player works!</span>
-</p>
+<div style="position: absolute;top:0;right:0;color: #fff;background: #888888;padding: 10px">
+  <span (click)="close()">Close</span>
+</div>
 
-<youtube-embed-player [videoId]="selected"></youtube-embed-player>
+<youtube-embed-player #ytPlayer [videoId]="selected"></youtube-embed-player>
 
+<div #posterRef class="poster-image" [style.backgroundImage]="'url('+poster+')'"></div>

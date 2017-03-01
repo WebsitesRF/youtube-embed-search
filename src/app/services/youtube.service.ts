@@ -8,7 +8,7 @@ import {YoutubeItem} from "../model/youtube-item";
 export class YoutubeService {
 
   private BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
-  private API_TOKEN = 'AIzaSyAJk1xUI72YYfBMgEc84gjHUX-k2AN6-B0';
+  private API_TOKEN = 'AIzaSyDtnPSlFkwfZ3fJ70UXFRtt9vIw03lOxXQ';
 
 
   constructor(private http: Http) {
@@ -16,7 +16,7 @@ export class YoutubeService {
   }
 
   public search(term: string): Observable<YoutubeItem> {
-    return this.http.get(`${this.BASE_URL}?q=${term}&part=snippet&maxResults=20&type=video&key=${this.API_TOKEN}`)
+    return this.http.get(`${this.BASE_URL}?q=${term}&part=snippet&maxResults=50&type=video&key=${this.API_TOKEN}`)
       .map(res => res.json())
       .map(json => json.items);
   }

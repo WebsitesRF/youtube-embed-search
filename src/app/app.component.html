@@ -1,15 +1,12 @@
 
 
-<div class="search-bar">
-<input #search_input type="text" (keyup)="search(search_input.value)">
-<button (click)="search(search_input.value)">Search</button>
-</div>
+<input #search_input autofocus type="text" placeholder="Search..." (keyup)="search(search_input.value)">
 
 
 Selected: {{selected | async}}
-<youtube-list [videos]="videos | async" (onVideo)="selectItem($event)" (onVideoSelected)="player.positionPlayer($event.target)"></youtube-list>
+<youtube-list #yt [videos]="videos | async" (onVideo)="selectItem($event)" (onVideoSelected)="player.positionPlayer($event.target)"></youtube-list>
 
 
 
 
-<video-player #player [selected]="selected | async"></video-player>
+<video-player #player [selected]="selected | async" [poster]="yt.selectedVideo?.snippet?.thumbnails?.default?.url"></video-player>

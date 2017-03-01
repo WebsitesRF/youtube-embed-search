@@ -10,6 +10,8 @@ export class YoutubeEmbedPlayerComponent implements OnInit, AfterViewInit {
   @ViewChild('player')
   player: ElementRef;
 
+  ytPlayer: any;
+
 
   @Input()
   public set videoId(value: string) {
@@ -29,6 +31,10 @@ export class YoutubeEmbedPlayerComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   }
 
+  public pause() {
+    this.ytPlayer.pauseVideo();
+  }
+
   ngAfterViewInit(): void {
     const tag = document.createElement('script');
 
@@ -40,41 +46,23 @@ export class YoutubeEmbedPlayerComponent implements OnInit, AfterViewInit {
       this.createPlayer();
     }, 2000);
 
-
   }
 
-  ytPlayer: any;
 
   createPlayer() {
-    console.log("Create");
     this.ytPlayer = new window['YT'].Player(this.player.nativeElement, {
-      height: 600,
-      width: 800,
+      height: "100%",
+      width: "100%",
       playerVars: {'autoplay': 0, 'controls': 1},
       events: {
         'onReady': function (event: any) {
-          console.log("Player Ready");
-          // that.youtube.player.loadVideoById(that.youtube.videoId);
-          //event.target.loadVideoById(that.youtube.videoId);
-          //event.target.loadVideoById(that.youtube.videoId);
-          /*
-           that.playerReady = true;
-           // this.playerReady = true;
-           that.event = event;
-           // this.event = event.target;
-           if (that.startTime) {
-           event.target.seekTo(that.startTime, true);
-           that.startTime = null;
-           }
-           },
-           */
         },
         'onStateChange': function (event: any) {
-          //that.playerStateEmitter.next(event.data);
           console.log("Player State Changed ", event);
         }
       }
     });
+
   }
 
   play(videoId) {
@@ -83,5 +71,7 @@ export class YoutubeEmbedPlayerComponent implements OnInit, AfterViewInit {
     }
 
   }
+
+
 
 }

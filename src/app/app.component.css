@@ -8,16 +8,7 @@
 }
 
 
-.search-bar {
-  position: fixed;
-  top:0;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: #000;
-  border-bottom: solid 1px #fff;
 
-}
 
 
 
@@ -27,4 +18,11 @@ input{
   border: solid 1px #fff;
   background: #000;
   color: #fff;
+
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  background: #000;
+  width: 100%;
 }

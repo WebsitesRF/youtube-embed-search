@@ -9,6 +9,8 @@ import {YoutubeItem} from "../../model/youtube-item";
 })
 export class YoutubeListComponent implements OnInit {
 
+  public selectedVideo:any;
+
   @Output()
   onVideo: EventEmitter<YoutubeItem> = new EventEmitter<YoutubeItem>();
 
@@ -22,6 +24,7 @@ export class YoutubeListComponent implements OnInit {
   }
 
   select(video: YoutubeItem, event:Event) {
+    this.selectedVideo = video;
     this.onVideo.emit(video);
     this.onVideoSelected.emit(event);
   }

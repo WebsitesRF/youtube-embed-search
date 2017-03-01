@@ -7,3 +7,16 @@
   visibility: hidden;
   overflow: hidden;
 }
+
+.poster-image {
+  position: absolute;
+  left:0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+}

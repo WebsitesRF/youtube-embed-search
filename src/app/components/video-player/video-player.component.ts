@@ -1,5 +1,6 @@
-import {Component, ElementRef, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import 'gsap';
+import {YoutubeEmbedPlayerComponent} from '../youtube-embed-player/youtube-embed-player.component';
 
 @Component({
   selector: 'video-player',
@@ -10,7 +11,16 @@ export class VideoPlayerComponent implements OnInit {
 
 
   @Input()
-  selected:string;
+  selected: string;
+
+  @ViewChild('ytPlayer')
+  youtubePlayer: YoutubeEmbedPlayerComponent;
+
+  @ViewChild('posterRef')
+  posterEl: ElementRef;
+
+  @Input('poster')
+  public poster: string;
 
   constructor(private el: ElementRef) {
   }
@@ -54,11 +64,19 @@ export class VideoPlayerComponent implements OnInit {
     }, {x: '0px', y: window.scrollY + 'px', height: '100%', width: '100%', ease: 'Sine.easeOut'});
 
 
+    setTimeout(() => {
+      TweenMax.to(this.posterEl.nativeElement, 0.8, {autoAlpha: 0});
+    }, 700);
+
+
   }
 
   close() {
+    TweenMax.to(this.posterEl.nativeElement, 0.8, {autoAlpha: 1});
+    console.log(this.youtubePlayer)
     const el: HTMLElement = this.el.nativeElement;
     const pos = this.lastSelected;
+    this.youtubePlayer.pause();
     //this.video.close();
     //this.currentTarget.style.visibility = 'visible';
     TweenMax.to(el, 0.7, {
@@ -70,7 +88,7 @@ export class VideoPlayerComponent implements OnInit {
       onComplete: () => {
         //this.video.nativeElement.style.visibility = 'hidden';
         this.el.nativeElement.style.visibility = 'hidden';
-      }
+      }, delay: 0.5
     });
   }
 
